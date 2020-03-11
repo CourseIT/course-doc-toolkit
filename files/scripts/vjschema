@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ajv validate -s $1 -d $2

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+asciidoctor -b docbook -d book -v $1
+file="$1"
+dir=$(dirname "${file}")
+filename="$(basename -- "$file")"
+filename="$dir/${filename%.*}.xml"
+fopub -t /usr/local/bin/docbook-xsl $filename

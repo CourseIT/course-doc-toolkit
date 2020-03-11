@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?asciidoc-toc maxdepth="3"?>
+<?asciidoc-numbered?>
+<!DOCTYPE book [<!ENTITY % db5ent PUBLIC "-//FOPUB//ENTITIES Entities for DocBook 5" "db5.ent"> %db5ent;]>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="ru">
+<info>
+<title>Методика проведения и&#160;анализа результатов&#160;ОЭ</title>
+<date>12.12.2019</date>
+<revhistory>
+<revision>
+<revnumber>01</revnumber>
+<date>12.12.2019</date>
+</revision>
+</revhistory>
+</info>
+<dedication xml:id="_лист_изменений">
+<title>Лист изменений</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="14.2857*"/>
+<colspec colname="col_2" colwidth="14.2857*"/>
+<colspec colname="col_3" colwidth="42.8571*"/>
+<colspec colname="col_4" colwidth="28.5715*"/>
+<thead>
+<row>
+<entry align="center" valign="top">Дата</entry>
+<entry align="center" valign="top">Версия</entry>
+<entry align="center" valign="top">Краткое описание изменений</entry>
+<entry align="center" valign="top">ФИО</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>12.12.2019</simpara></entry>
+<entry align="left" valign="top"><simpara>01</simpara></entry>
+<entry align="left" valign="top"><simpara>Документ подготовлен</simpara></entry>
+<entry align="left" valign="top"><simpara>Поташников Н.М.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>&#160;</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>&#160;</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>&#160;</simpara></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</dedication>
+<chapter xml:id="_термины_и_сокращения">
+<title>Термины и сокращения</title>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="40*"/>
+<colspec colname="col_2" colwidth="60*"/>
+<thead>
+<row>
+<entry align="center" valign="top">Термины / Сокращения</entry>
+<entry align="center" valign="top">Определения</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Административный регламент по осуществлению ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>Административный регламент по осуществлению Государственной корпорацией по атомной энергии «Росатом» федерального государственного строительного надзора при строительстве, реконструкции объектов федеральных ядерных организаций, утвержденный приказом от 25 декабря 2018 г. N 1/40-НПА Госкорпорации «Росатом» (Зарегистрировано в Минюсте России 25.03.2019 N 54152)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>АИС ГСН/Система</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизированная информационная система «Госстройнадзор»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Блок</simpara></entry>
+<entry align="left" valign="top"><simpara>Структурная часть Системы / подсистемы</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Бизнес-процесс</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>БТ</simpara></entry>
+<entry align="left" valign="top"><simpara>Бизнес-требования</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Веб-приложение</simpara></entry>
+<entry align="left" valign="top"><simpara>Клиент-серверное приложение, в котором клиент взаимодействует с сервером при помощи браузера, а за сервер отвечает — веб-сервер</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Госкорпорация «Росатом»/ ГК «Росатом»</simpara></entry>
+<entry align="left" valign="top"><simpara>Государственная корпорация по атомной энергии «Росатом»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Государственный строительный надзор/ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>Государственный строительный надзор при строительстве и реконструкции объектов капитального строительства федеральных ядерных организаций Госкорпорации «Росатом»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Группа ТКИС</simpara></entry>
+<entry align="left" valign="top"><simpara>Группа технического контроля и испытаний в строительстве Частного учреждения Госкорпорации «Росатом» «Отраслевой центр капитального строительства» - соисполнитель надзорных мероприятий в части проведения экспертиз, обследований, лабораторных и иных испытаний</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ДКВ</simpara></entry>
+<entry align="left" valign="top"><simpara>Директор по капитальным вложениям, государственному строительному надзору и государственной экспертизе Госкорпорации «Росатом»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Должностное лицо (ДЛ)</simpara></entry>
+<entry align="left" valign="top"><simpara>Должностное лицо, ответственное за осуществление государственного строительного надзора</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Заказчик</simpara></entry>
+<entry align="left" valign="top"><simpara>Госкорпорация «Росатом»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Заявитель</simpara></entry>
+<entry align="left" valign="top"><simpara>Застройщик (Технический заказчик), обратившийся в надзорный орган с заявлением о проведении государственного строительного надзора</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ЗИ</simpara></entry>
+<entry align="left" valign="top"><simpara>Запрос на изменение</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИБ</simpara></entry>
+<entry align="left" valign="top"><simpara>Информационная безопасность</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>КНД</simpara></entry>
+<entry align="left" valign="top"><simpara>Контрольно-надзорная деятельность</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>КоАП РФ</simpara></entry>
+<entry align="left" valign="top"><simpara>Кодекс Российской Федерации об административных правонарушениях</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>КС</simpara></entry>
+<entry align="left" valign="top"><simpara>Капитальное строительство</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>КТ</simpara></entry>
+<entry align="left" valign="top"><simpara>Информация, составляющая коммерческую тайну</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Надзорное дело</simpara></entry>
+<entry align="left" valign="top"><simpara>Информационный объект АИС ГСН, формируемый в Системе применительно к каждому объекту КС (или этапу строительства, реконструкции объекта КС, в случае выдачи Заявителю разрешения на строительство применительно к этапу строительства, реконструкции объекта КС). Выполняет функцию объединения (группирования) и идентификации документов и данных, формируемых в ходе и по итогам проверок в рамках надзорного дела</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Надзорный орган (НО)</simpara></entry>
+<entry align="left" valign="top"><simpara>Госкорпорация «Росатом» в лице Управления государственного строительного надзора</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Опытная эксплуатация, ОЭ</simpara></entry>
+<entry align="left" valign="top"><simpara>Режим эксплуатации Системы / подсистемы, при котором в ней выполняются предусмотренные проектной документацией функции в объёме, необходимом для оценки готовности Системы / подсистемы к переходу в постоянную эксплуатацию. Сроки, функциональный и организационный объёмы ОЭ отражены в отчётном документе Проекта «Методика проведения и анализа результатов ОЭ»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Организации ГК «Росатом»</simpara></entry>
+<entry align="left" valign="top"><simpara>Акционерные общества и подведомственные ФГУП Госкорпорации «Росатом»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ОТКИ</simpara></entry>
+<entry align="left" valign="top"><simpara>Отдел технического контроля и испытаний</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ОЦКС</simpara></entry>
+<entry align="left" valign="top"><simpara>Частное учреждение Госкорпорации «Росатом» «Отраслевой центр капитального строительства»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ПО</simpara></entry>
+<entry align="left" valign="top"><simpara>Программное обеспечение</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Подразделение</simpara></entry>
+<entry align="left" valign="top"><simpara>Структурное подразделение ГК, процессы которого подлежат автоматизации в рамках выполнения проекта</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Подрядчик</simpara></entry>
+<entry align="left" valign="top"><simpara>Подрядчик по договору проведения работ по созданию АИС ГСН</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Постоянная эксплуатация, ПЭ</simpara></entry>
+<entry align="left" valign="top"><simpara>Режим штатной эксплуатации Системы / подсистемы</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Проверка</simpara></entry>
+<entry align="left" valign="top"><simpara>Проверка соответствия выполненных при строительстве и реконструкции объектов капитального строительства работ требованиям технических регламентов, иных нормативных правовых актов и проектной документации, в том числе требованиям энергетической эффективности и требованиям оснащенности зданий, строений, сооружений приборами учета используемых энергетических ресурсов</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Проект «Создание АИС ГСН»</simpara></entry>
+<entry align="left" valign="top"><simpara>Проект «Создание автоматизированной информационной системы «Госстройнадзор»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Проектная группа</simpara></entry>
+<entry align="left" valign="top"><simpara>Сотрудники Заказчика и Подрядчика, совместно</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Проектное решение</simpara></entry>
+<entry align="left" valign="top"><simpara>Проектное решение, документ, детально описывающий функциональные блоки Системы / подсистемы, определяющий технические способы реализации системных решений, а также формирующий макет-дизайны системных страниц</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ПСИ</simpara></entry>
+<entry align="left" valign="top"><simpara>Приёмо-сдаточные испытания</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ТЗ</simpara></entry>
+<entry align="left" valign="top"><simpara>Техническое задание</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ТТ</simpara></entry>
+<entry align="left" valign="top"><simpara>Технические требования</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>УГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>Управление государственного строительного надзора Госкорпорации «Росатом»</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Федеральные ядерные организации (ФЯО)</simpara></entry>
+<entry align="left" valign="top"><simpara>Федеральные государственные унитарные предприятия, которые входят в ядерный оружейный комплекс Российской Федерации, обладают базовыми и критическими технологиями, включенными в утвержденный Президентом Российской Федерации перечень критических технологий Российской Федерации, основной деятельностью которых являются создание, сопровождение в процессе эксплуатации, разборка ядерных боеприпасов и ядерных зарядов, утилизация и (или) уничтожение их составных частей, создание и утилизация ядерных энергетических установок военного назначения и в отношении которых Госкорпорация «Росатом» осуществляет от имени Российской Федерации полномочия собственника имущества</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Функциональные требования</simpara></entry>
+<entry align="left" valign="top"><simpara>Требования Заказчика, определяющие, какие конкретно функциональные возможности должна иметь заказанная к разработке Система / подсистемы</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</chapter>
+<chapter xml:id="_цели_документа">
+<title>Цели документа</title>
+<simpara>Основанием для проведения работ является договор подряда №&#160;1/17560&#8209;Д от «15»&#160;августа&#160;2019 года на&#160;выполнение работ по&#160;проекту «Создание автоматизированной информационной системы «Госстройнадзор» (далее Договор подряда).</simpara>
+<simpara>Создание АИС&#160;ГСН направлено на&#160;автоматизацию деятельности Госкорпорации «Росатом» при&#160;осуществлении ГСН при&#160;строительстве и реконструкции объектов КС&#160;ФЯО Госкорпорации «Росатом», выполняемой в&#160;соответствии с&#160;Административным регламентом по&#160;осуществлению ГСН.</simpara>
+<simpara>Цель настоящего документа&#8201;&#8212;&#8201;отразить методику проведения и анализа результатов&#160;ОЭ.</simpara>
+<simpara>Опытная эксплуатация АИС&#160;ГСН проводится с целью проверки функционирования Системы в целом и на отдельных рабочих местах, правильности выполнения в АИС&#160;ГСН реализованных функций с учетом корректности реализации интеграционных процессов со смежными системами.</simpara>
+</chapter>
+<chapter xml:id="_участники_опытной_эксплуатации">
+<title>Участники опытной эксплуатации</title>
+<simpara>Организационный периметр опытной эксплуатации включает:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Госкорпорация «Росатом»&#8201;&#8212;&#8201;Заказчик;</simpara>
+</listitem>
+<listitem>
+<simpara>Группа ТКИС&#8201;&#8212;&#8201; подразделение ОЦКС;</simpara>
+</listitem>
+<listitem>
+<simpara>Застройщики&#8201;&#8212;&#8201;Технические заказчики проверяемых объектов строительства – ФЯО;</simpara>
+</listitem>
+<listitem>
+<simpara>АО «Гринатом»&#8201;&#8212;&#8201;многофункциональный общий центр обслуживания организаций Госкорпорации «Росатом».</simpara>
+</listitem>
+</itemizedlist>
+<simpara>По каждому предприятию, входящему в организационный объем&#160;ОЭ, должен быть определен и утвержден перечень ключевых пользователей. Этот список может изменяться в ходе&#160;ОЭ.</simpara>
+<simpara>ООО «КАСКАД» (Подрядчик) обеспечивает поддержку пользователей в ходе&#160;ОЭ. Подрядчик ведет журнал&#160;ОЭ (<xref linkend="jurnal_oe"/>), в котором фиксируются результаты выполненных работ, замечания по работе Системы и предложения по изменению работы Системы.</simpara>
+</chapter>
+<chapter xml:id="t12_functions">
+<title>Функциональный объем&#160;ОЭ</title>
+<simpara>В ходе опытной эксплуатации должны быть проверены в полном объеме следующие варианты использования АИС&#160;ГСН.</simpara>
+<informaltable frame="all" rowsep="1" colsep="1">
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="16.6666*"/>
+<colspec colname="col_2" colwidth="33.3333*"/>
+<colspec colname="col_3" colwidth="50.0001*"/>
+<thead>
+<row>
+<entry align="center" valign="middle">Код варианта использования</entry>
+<entry align="center" valign="middle">Наименование варианта использования</entry>
+<entry align="center" valign="middle">Связанные роли, дополнительная информация</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>UC1</simpara></entry>
+<entry align="left" valign="top"><simpara>Проводит проверку</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО, Сотруднику ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC2</simpara></entry>
+<entry align="left" valign="top"><simpara>Проводит испытания (измерения)</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC3</simpara></entry>
+<entry align="left" valign="top"><simpara>Работает с ЛК</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Заявителям, деятельность Заявителя в ЛК может осуществляться в рамках других вариантов использования, например, проведения проверки, или инициировать другие варианты использования, например, представляемые через ЛК извещения могут инициировать новую проверку или привести к созданию/коррекции программы проверок</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC4</simpara></entry>
+<entry align="left" valign="top"><simpara>Планирует работу</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматический вариант использования, благодаря которому АИС ГСН объединяет сведения о всех планируемых мероприятиях</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC5</simpara></entry>
+<entry align="left" valign="top"><simpara>Инициирует проверку</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC6</simpara></entry>
+<entry align="left" valign="top"><simpara>Планирует работу ОТКИ</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC7</simpara></entry>
+<entry align="left" valign="top"><simpara>Управляет качеством</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC8</simpara></entry>
+<entry align="left" valign="top"><simpara>Ведет БД о нарушениях</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО, выполняется в рамках проведения проверки, перечень нарушений фиксируется в акте проверки</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC9</simpara></entry>
+<entry align="left" valign="top"><simpara>Управляет программой проверок</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC10</simpara></entry>
+<entry align="left" valign="top"><simpara>Ведет график работы УГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматический вариант использования, благодаря которому АИС ГСН отображает все мероприятия в форме графика</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC12</simpara></entry>
+<entry align="left" valign="top"><simpara>Контролирует и анализирует работу</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Руководителю УГСН</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC13</simpara></entry>
+<entry align="left" valign="top"><simpara>Ведет справочники и классификаторы</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Администратору АИС ГСН (в части ведения форм первичного учета и отчетных форм, реестров пользователей), Сотруднику НО (в части надзорных функций), Сотруднику ОТКИ (в части функций проведения испытаний/измерений)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC14</simpara></entry>
+<entry align="left" valign="top"><simpara>Планирует аттестацию и повышение квалификации</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику ОТКИ, является частью планирования ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC15</simpara></entry>
+<entry align="left" valign="top"><simpara>Планирует проведение испытаний (измерений)</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику ОТКИ, планирование испытаний проводится в рамках подготовки к проведению проверки, является частью планирования ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC16</simpara></entry>
+<entry align="left" valign="top"><simpara>Планирует поверку средств измерений</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику ОТКИ, является частью планирования ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC17</simpara></entry>
+<entry align="left" valign="top"><simpara>Загружает нормативные документы</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО, Сотруднику ОТКИ, является частью ведения справочников и классификаторов</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC18</simpara></entry>
+<entry align="left" valign="top"><simpara>Устанавливает отметку об ознакомлении</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО, Сотруднику ОТКИ, является частью ведения справочников и классификаторов</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC19</simpara></entry>
+<entry align="left" valign="top"><simpara>Ведет кадровый учет</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО, является частью ведения справочников и классификаторов</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC20</simpara></entry>
+<entry align="left" valign="top"><simpara>Готовит программу проверок</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО, является частью управления программой проверок</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC21</simpara></entry>
+<entry align="left" valign="top"><simpara>Корректирует программу проверок</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО, является частью управления программой проверок</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC22</simpara></entry>
+<entry align="left" valign="top"><simpara>Планирует обслуживание средств измерений</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику ОТКИ, является частью планирования ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC23</simpara></entry>
+<entry align="left" valign="top"><simpara>Планирует внутреннюю проверку СМК</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику ОТКИ, является частью планирования ОТКИ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC24</simpara></entry>
+<entry align="left" valign="top"><simpara>Ведет реестр пользователей и справочник ролей</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Администратору АИС ГСН, является частью ведения справочников и классификаторов</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC25</simpara></entry>
+<entry align="left" valign="top"><simpara>Ведет иные справочники и классификаторы</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Сотруднику НО, Сотруднику ОТКИ, является частью ведения справочников и классификаторов</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC26</simpara></entry>
+<entry align="left" valign="top"><simpara>Ведет реестр форм</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Администратору АИС ГСН, который ведет реестр форм первичного учета и реестр отчетных форм, является частью ведения справочников и классификаторов</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC27</simpara></entry>
+<entry align="left" valign="top"><simpara>Представляет извещения</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Заявителю</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC28</simpara></entry>
+<entry align="left" valign="top"><simpara>Представляет требуемые документы</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Заявителю</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC29</simpara></entry>
+<entry align="left" valign="top"><simpara>Устанавливает отметку об ознакомлении</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Заявителю</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>UC30</simpara></entry>
+<entry align="left" valign="top"><simpara>Просматривает связанные с ним документы</simpara></entry>
+<entry align="left" valign="top"><simpara>Относится к Заявителю</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<simpara>В ходе проверки указанных вариантов использования должна обеспечиваться корректная работа функций интеграции со смежными системами:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>АИС «Экспертиза проектов»;</simpara>
+</listitem>
+<listitem>
+<simpara>ЕОС НСИ;</simpara>
+</listitem>
+<listitem>
+<simpara>ЕОСДО;</simpara>
+</listitem>
+<listitem>
+<simpara>SAP BI (ИАС КХД);</simpara>
+</listitem>
+<listitem>
+<simpara>СПГУ.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>В зависимости от готовности указанных систем к интеграции с АИС&#160;ГСН и особенностей их реализации механизмы интеграции на этапе ОЭ могут функционировать в рамках одного из следующих контуров:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>продуктивный контур смежной информационной системы;</simpara>
+</listitem>
+<listitem>
+<simpara>тестовый контур смежной информационной системы;</simpara>
+</listitem>
+<listitem>
+<simpara>программный компонент в контуре АИС&#160;ГСН, обеспечивающий имитацию интерфейсов интеграции смежной информационной системы.</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Конкретный контур для каждой из функций интеграции в детализации до потоков данных (<xref linkend="t12_potoki_tbl"/>) должен быть определен в рамках рабочего проектирования (этап разработки решения) при подготовке к&#160;ОЭ и отражен в документе «Программа и методике испытаний, включая сценарии тестирования», а также в документе «Протокол готовности к&#160;ОЭ».</simpara>
+<table xml:id="t12_potoki_tbl" frame="all" rowsep="1" colsep="1">
+<title>Перечень потоков данных АИС&#160;ГСН</title>
+<tgroup cols="6">
+<colspec colname="col_1" colwidth="9.0909*"/>
+<colspec colname="col_2" colwidth="18.1818*"/>
+<colspec colname="col_3" colwidth="18.1818*"/>
+<colspec colname="col_4" colwidth="18.1818*"/>
+<colspec colname="col_5" colwidth="18.1818*"/>
+<colspec colname="col_6" colwidth="18.1819*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Поток данных</entry>
+<entry align="left" valign="top">Тип интеграции</entry>
+<entry align="left" valign="top">Краткое наиме&#173;нование системы отправителя</entry>
+<entry align="left" valign="top">Краткое наиме&#173;нование системы получателя</entry>
+<entry align="left" valign="top">Технология интеграции</entry>
+<entry align="left" valign="top">Комментарии</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>ИИ4.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС «Экспертиза проектов»</simpara></entry>
+<entry align="left" valign="top"><simpara>WebService</simpara></entry>
+<entry align="left" valign="top"><simpara>Обеспечивает открытие сведений по объекту КС в АИС «Экспертиза проектов» через URL</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ3.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС «Экспертиза проектов»</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Запрос идентификатора объекта КС (номера заявления) по реквизитам заключения/ реквизитам разрешения</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ3.ИП2</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС «Экспертиза проектов»</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Обратный поток: возврат идентификатора объекта КС</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ2.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС «Экспертиза проектов»</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Запрос сведений о последних событиях</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ2.ИП2</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС «Экспертиза проектов»</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Обратный поток: возврат сведений о последних событиях</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ4.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС «Экспертиза проектов»</simpara></entry>
+<entry align="left" valign="top"><simpara>Выгрузка файла</simpara></entry>
+<entry align="left" valign="top"><simpara>Выгрузка файла с переченем выданных ЗОС</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ5.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕОС НСИ</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Выгрузка сведений о контрагенте</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ5.ИП2</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕОС НСИ</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Обратный поток: возврат локального идентификатора</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ7.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕОСДО</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Запрос сведений о документе в ЕОСДО</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ7.ИП2</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕОСДО</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Обратный поток: возвращение сведений о документе из ЕОСДО</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ8.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕОСДО</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Инициация создания (обновления) проекта документа в ЕОСДО</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ8.ИП2</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕОСДО</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Обратный поток: возврат идентификтора документа из ЕОСДО</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ10.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕОСДО</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Уведомление АИС ГСН об изменении статуса документа</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ9.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>SAP BI</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Передача сведений о значениях показателей в SAP BI</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ11.ИП1</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>СПГУ</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Запрос данных из вида сведений СМЭВ</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>ИИ11.ИП2</simpara></entry>
+<entry align="left" valign="top"><simpara>Автоматизи&#173;рованная</simpara></entry>
+<entry align="left" valign="top"><simpara>СПГУ</simpara></entry>
+<entry align="left" valign="top"><simpara>АИС ГСН</simpara></entry>
+<entry align="left" valign="top"><simpara>ЕСИК БП</simpara></entry>
+<entry align="left" valign="top"><simpara>Обратный поток: возврат данных вида сведений СМЭВ</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>В функциональный объем ОЭ также входит проверка варианта использования по анализу данных Госстройнадзора при помощи дашбордов в системе SAP BI (ИАС КХД).</simpara>
+</chapter>
+<chapter xml:id="_функциональный_объемоэ_в_разрезе_ролей">
+<title>Функциональный объем&#160;ОЭ в разрезе ролей</title>
+<simpara>На следующем рисунке приведены варианты использования АИС&#160;ГСН Сотрудником НО.</simpara>
+<figure>
+<title>Варианты использования АИС&#160;ГСН Сотрудником НО</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/model/UCA2.png" contentwidth="170mm"/>
+</imageobject>
+<textobject><phrase>UCA2</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara><?asciidoc-pagebreak?></simpara>
+<simpara>На следующем рисунке приведены варианты использования АИС&#160;ГСН Сотрудником ОТКИ.</simpara>
+<figure>
+<title>Варианты использования АИС&#160;ГСН Сотрудником ОТКИ</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/model/UCA3.png" contentwidth="170mm"/>
+</imageobject>
+<textobject><phrase>UCA3</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara><?asciidoc-pagebreak?></simpara>
+<simpara>На следующем рисунке приведены варианты использования АИС&#160;ГСН Заявителем.</simpara>
+<figure>
+<title>Варианты использования АИС&#160;ГСН Заявителем</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/model/UC3_detail.png" contentwidth="153mm"/>
+</imageobject>
+<textobject><phrase>UC3 detail</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>На следующем рисунке приведены варианты использования АИС&#160;ГСН Руководителем УГСН, Администратором АИС&#160;ГСН, Администратором безопасности.</simpara>
+<figure>
+<title>Варианты использования АИС&#160;ГСН Руководителем УГСН, Администратором АИС&#160;ГСН, Администратором безопасности</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="../images/model/UCAo.png" contentwidth="136mm"/>
+</imageobject>
+<textobject><phrase>UCAo</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>Роли участников ОЭ должны быть настроены в соответствии с матрицей доступа субъектов АИС&#160;ГСН к объектам доступа (далее&#8201;&#8212;&#8201;матрица доступа).</simpara>
+<simpara>Проверка участниками ОЭ работы с дашбордами в системе SAP BI (ИАС КХД) должна осуществляться от имени роли Отчетность УГСН.</simpara>
+</chapter>
+<chapter xml:id="_мероприятияоэ">
+<title>Мероприятия&#160;ОЭ</title>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Подготовка к&#160;ОЭ (решения по подготовке к&#160;ОЭ должны быть отражены в протоколе готовности к&#160;ОЭ).</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Подготовка среды для проведения ОЭ. Для ОЭ будет использоваться среда, которая в последствии обеспечит функционирование АИС&#160;ГСН в рамках постоянной эксплуатации. По окончании ОЭ тестовые данные, оказавшиеся в результате работы участников ОЭ в хранилище используемой среды ОЭ, должны быть удалены Подрядчиком.</simpara>
+</listitem>
+<listitem>
+<simpara>Проведение миграции данных в требуемых для&#160;ОЭ объемах (ответственный&#8201;&#8212;&#8201;Подрядчик).</simpara>
+</listitem>
+<listitem>
+<simpara>Подготовка и согласование списка пользователей, участвующих в&#160;ОЭ (ответственный&#8201;&#8212;&#8201;все участники&#160;ОЭ).</simpara>
+</listitem>
+<listitem>
+<simpara>Настройка ролей в соответствии с матрицей доступа.</simpara>
+</listitem>
+<listitem>
+<simpara>Определение параметров функционирования механизмов интеграции со смежными информационными системами в рамках ОЭ (ответственный&#8201;&#8212;&#8201;Подрядчик, Заказчик).</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Проведение&#160;ОЭ (ответственный&#8201;&#8212;&#8201;Подрядчик, Заказчик).</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Проверка участниками ОЭ функций АИС&#160;ГСН (<xref linkend="t12_functions"/>)</simpara>
+</listitem>
+<listitem>
+<simpara>Регистрация замечаний и ошибок.</simpara>
+</listitem>
+<listitem>
+<simpara>Классификация замечаний и ошибок.</simpara>
+</listitem>
+<listitem>
+<simpara>Устранение ошибок.</simpara>
+</listitem>
+<listitem>
+<simpara>Отработка замечаний.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Поддержка пользователей в период&#160;ОЭ (исходя из ролей участников Системы, приведенных в матрице ролей и полномочий) (ответственный&#8201;&#8212;&#8201;Подрядчик).</simpara>
+</listitem>
+<listitem>
+<simpara>Актуализация технической и эксплуатационной документации по результатам&#160;ОЭ (ответственный&#8201;&#8212;&#8201;Подрядчик).</simpara>
+</listitem>
+</orderedlist>
+<bridgehead xml:id="_порядок_поддержки_пользователей_при_проведении_оэ" renderas="sect2">Порядок поддержки пользователей при проведении ОЭ:</bridgehead>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>Регистрация обращений производится сотрудником Подрядчика по электронной почте и телефону. Адрес электронной почты и номер телефона должны быть переданы Подрядчиком перед проведением ОЭ.</simpara>
+</listitem>
+<listitem>
+<simpara>Обращение фиксируется в журнале опытной эксплуатации (<xref linkend="jurnal_oe"/>). При регистрации в журнал вносятся следующие сведения:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>регистрационный номер;</simpara>
+</listitem>
+<listitem>
+<simpara>ФИО инициатора обращения;</simpara>
+</listitem>
+<listitem>
+<simpara>должность инициатора обращения;</simpara>
+</listitem>
+<listitem>
+<simpara>адрес электронной почты и телефон инициатора обращения;</simpara>
+</listitem>
+<listitem>
+<simpara>дата обращения;</simpara>
+</listitem>
+<listitem>
+<simpara>описание обращения;</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>По результатам регистрации обращения сотрудник Подрядчика сообщает инициатору обращения его регистрационный номер (идентификатор).</simpara>
+</listitem>
+<listitem>
+<simpara>В течение 4 часов после получения обращения сотрудник Подрядчика определяет требуемый срок для отработки обращение, проводит его классификацию (классификатор приведен в приложении, <xref linkend="jurnal_oe"/>) и уведомляет инициатора обращения. При необходимости по согласованию с Заказчиком срок и классификация обращения могут быть изменены.</simpara>
+</listitem>
+<listitem>
+<simpara>Консультация может быть оказана по телефону, по электронной почте и очно. Конкретный вариант оказания консультации для обращения определяется сотрудником Подрядчика по согласованию с инициатором обращения.</simpara>
+</listitem>
+<listitem>
+<simpara>После отработки сотрудник Подрядчика вносит результат отработки сообщения и уведомляет об этом инициатора по электронной почте.</simpara>
+</listitem>
+</orderedlist>
+</chapter>
+<chapter xml:id="_период_проведенияоэ">
+<title>Период проведения&#160;ОЭ</title>
+<simpara>Период проведения&#160;ОЭ Системы согласно ТЗ к Договору подряда: c 01.06.2020 г. по 31.10.2020 г.</simpara>
+</chapter>
+<chapter xml:id="_обработка_и_анализ_результатовоэ">
+<title>Обработка и анализ результатов&#160;ОЭ</title>
+<simpara>По результатам работы пользователей и поддержки в период&#160;ОЭ Исполнитель разрабатывает документы:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>отчет о результатах работы в период&#160;ОЭ;</simpara>
+</listitem>
+<listitem>
+<simpara>актуализированная техническая и эксплуатационная документация по результатам&#160;ОЭ;</simpara>
+</listitem>
+<listitem>
+<simpara>проект протокола готовности к ПЭ.</simpara>
+</listitem>
+</itemizedlist>
+</chapter>
+<chapter xml:id="_анализ_качества_результатов_работ">
+<title>Анализ качества результатов работ</title>
+<simpara>ОЭ считается успешной при следующих условиях:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Выявленные в ходе ОЭ критичные замечания устранены. По замечаниям, не препятствующим началу ПЭ, согласованы сроки их устранения.</simpara>
+</listitem>
+<listitem>
+<simpara>Техническая и эксплуатационная документация актуализирована по результатам&#160;ОЭ</simpara>
+</listitem>
+<listitem>
+<simpara>50% от списочного состава участников ОЭ зашли в систему в период ОЭ и 80% из них выполнили хотя бы одну операцию в Системе.</simpara>
+</listitem>
+</itemizedlist>
+</chapter>
+<appendix xml:id="jurnal_oe" role="landscape">
+<title>Форма журнала опытной эксплуатации</title>
+<table frame="all" rowsep="1" colsep="1">
+<title>Журнал хода опытной эксплуатации АИС&#160;ГСН</title>
+<tgroup cols="9">
+<colspec colname="col_1" colwidth="11.1111*"/>
+<colspec colname="col_2" colwidth="11.1111*"/>
+<colspec colname="col_3" colwidth="11.1111*"/>
+<colspec colname="col_4" colwidth="11.1111*"/>
+<colspec colname="col_5" colwidth="11.1111*"/>
+<colspec colname="col_6" colwidth="11.1111*"/>
+<colspec colname="col_7" colwidth="11.1111*"/>
+<colspec colname="col_8" colwidth="11.1111*"/>
+<colspec colname="col_9" colwidth="11.1112*"/>
+<thead>
+<row>
+<entry align="center" valign="middle">Регистра&#173;ционный номер</entry>
+<entry align="center" valign="middle">ФИО</entry>
+<entry align="center" valign="middle">Должность</entry>
+<entry align="center" valign="middle">Адрес электрон&#173;ной почты/ телефон</entry>
+<entry align="center" valign="middle">Дата</entry>
+<entry align="center" valign="middle">Замечания (ошибки)</entry>
+<entry align="center" valign="middle">Классификация<superscript>*</superscript></entry>
+<entry align="center" valign="middle">Результат отработки</entry>
+<entry align="center" valign="middle">Согласованная дата устранения замечания</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+<row>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+<entry align="left" valign="top"></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara><superscript>*</superscript> Замечание (ошибка) должна быть отнесена к нескольким пунктам классификации:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Замечание/ ошибка/ запрос на консультацию (обязательно)</simpara>
+</listitem>
+<listitem>
+<simpara>Критично/ не критично для перехода в ПЭ (обязательно, если запись относится к замечанию или ошибке)</simpara>
+</listitem>
+<listitem>
+<simpara>Замечание к доработке / замечание в план развития (обязательно, если запись относится к замечанию, не критичному для перехода в ПЭ)</simpara>
+</listitem>
+</itemizedlist>
+</appendix>
+</book>
