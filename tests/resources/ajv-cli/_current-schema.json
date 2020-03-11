@@ -1,0 +1,427 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://gksh.com/schemas/form-v0-1",
+  "title": "Шаблон формы",
+  "description": "Описание типовой формы",
+  "type": "object",
+  "properties": {
+    "entity": {
+      "description": "Корневой элемент",
+      "type": "object",
+      "properties": {
+        "meta": {
+          "description": "Сведения о сообщения",
+          "$ref": "#/definitions/meta_type"
+        },
+        "versioning": {
+          "description": "Сведения о версии",
+          "$ref": "#/definitions/versioning_type"
+        },
+        "behaviour": {
+          "description": "Модель изменения статусов",
+          "type": "object"
+        },
+        "data": {
+          "description": "Спецификация формы",
+          "$ref": "#/definitions/data_type"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "data_type": {
+      "properties": {
+        "data_id": {
+          "description": "Идентификатор содержательной части, обычно data",
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "integrity_fixed": {
+          "description": "Зафиксировать неизменяемость вложенной части",
+          "type": "boolean"
+        },
+        "section": {
+          "description": "Визуально отображаемый раздел формы",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/section_type"
+          }
+        }
+      },
+      "required": [
+        "data_id",
+        "section"
+      ],
+      "additionalProperties": false
+    },
+    "section_type": {
+      "properties": {
+        "section_id": {
+          "description": "Идентификатор секции",
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "section_type": {
+          "description": "Тип отображения секции",
+          "type": "string",
+          "enum": [
+            "persist"
+          ]
+        },
+        "name": {
+          "description": "Название секции",
+          "type": "string"
+        },
+        "list": {
+          "description": "Перечень списков групп компонент",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/list_type"
+          }
+        }
+      },
+      "required": [
+        "section_id",
+        "list"
+      ],
+      "additionalProperties": false
+    },
+    "list_type": {
+      "properties": {
+        "list_id": {
+          "description": "Идентификатор списка",
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "type": {
+          "description": "Тип списка",
+          "type": "string",
+          "enum": [
+            "various",
+            "similar"
+          ]
+        },
+        "group": {
+          "description": "Перечень групп",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/group_type"
+          }
+        }
+      },
+      "required": [
+        "list_id",
+        "group"
+      ],
+      "additionalProperties": false
+    },
+    "group_type": {
+      "properties": {
+        "group_id": {
+          "description": "Идентификатор группы",
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "group_list_id": {
+          "description": "Идентификатор группы внутри списка",
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "group_num": {
+          "description": "Порядковый номер группы в списке",
+          "type": "integer"
+        },
+        "show_as": {
+          "description": "Способ отображения группы",
+          "type": "string",
+          "enum": [
+            "group",
+            "card",
+            "no-group"
+          ]
+        },
+        "doc_proc_context": {
+          "description": "В каких случаях отображать группу",
+          "type": "string",
+          "enum": [
+            "internal-content",
+            "external-content",
+            "always"
+          ]
+        },
+        "integrity_fixed": {
+          "description": "Содержимое группы закрыто для редактирования",
+          "type": "boolean"
+        },
+        "item": {
+          "description": "Перечень групп",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/label_type"
+          }
+        }
+      },
+      "required": [
+        "group_id",
+        "item"
+      ],
+      "additionalProperties": false
+    },
+    "item_type": {
+      "properties": {
+        "item_id": {
+          "description": "Идентификатор элемента",
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "type": {
+          "description": "Тип элемента",
+          "type": "string",
+          "enum": [
+            "edit",
+            "select",
+            "date",
+            "text",
+            "date-range",
+            "edit-decimal",
+            "server-select",
+            "signature",
+            "concurrent-act",
+            "action",
+            "file"
+          ]
+        },
+        "label": {
+          "description": "Подпись элемента",
+          "type": "string"
+        },
+        "hint": {
+          "description": "Расширенное описание элемента"
+        },
+        "date_start": {
+          "description": "Дата начала",
+          "type": "string",
+          "format": "date"
+        },
+        "date_end": {
+          "description": "Дата начала",
+          "type": "string",
+          "format": "date"
+        },
+        "id": {
+          "description": "Значение элемента",
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "Значение элемента",
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        },
+        "default_value": {
+          "description": "Значение элемента",
+          "type": [
+            "string",
+            "integer",
+            "null"
+          ]
+        },
+        "readonly": {
+          "description": "Нередактируемый элемент",
+          "type": "string"
+        },
+        "obligatory": {
+          "description": "Элемент обязателен для заполнения",
+          "type": "string"
+        },
+        "hidden": {
+          "description": "Поле не отображается",
+          "type": "string"
+        },
+        "source": {
+          "description": "Источник значений",
+          "type": "string"
+        },
+        "template": {
+          "description": "Список шаблонов",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "transition": {
+          "description": "Код перехода состояний, к которому привязан документ",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item_id",
+        "label"
+      ],
+      "additionalProperties": false
+    },
+    "label_type": {
+      "properties": {
+        "type": {
+          "description": "Тип надписи",
+          "type": "string"
+        },
+        "label": {
+          "description": "Содержание надписи",
+          "type": "string"
+        }
+      }
+    },
+    "versioning_type": {
+      "properties": {
+        "version": {
+          "description": "Версия сообщения",
+          "type": "string"
+        },
+        "date_changed": {
+          "description": "Дата последнего изменения",
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "version",
+        "date_changed"
+      ],
+      "additionalProperties": false
+    },
+    "meta_type": {
+      "properties": {
+        "entity_id": {
+          "description": "Читаемый идентификатор сущности",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "uid": {
+          "description": "Глобальный уникальный идентификатор сущности",
+          "type": "string"
+        },
+        "doc_num": {
+          "description": "Номер документа",
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "doc_date": {
+          "description": "Дата документа",
+          "type": "string",
+          "format": "date"
+        },
+        "schema_version": {
+          "description": "Номер документа",
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "type": {
+          "description": "Тип документа",
+          "type": "string",
+          "enum": [
+            "У"
+          ]
+        },
+        "state": {
+          "description": "Текущий статус",
+          "type": "string"
+        },
+        "case_link": {
+          "description": "Привязка к делам",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/case_link_type"
+          }
+        },
+        "external_allowed": {
+          "description": "Возможность загрузки документа как внешнего файла",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "key_field": {
+          "description": "Перечень ключевых атрибутов",
+          "type": "array"
+        }
+      },
+      "required": [
+        "uid",
+        "schema_version",
+        "type",
+        "external_allowed"
+      ],
+      "additionalProperties": false
+    },
+    "case_link_type": {
+      "properties": {
+        "case_type_id": {
+          "description": "Идентификатор вида дела",
+          "type": "string",
+          "enum": [
+            "Д1",
+            "Д32",
+            "Д33",
+            "Д34",
+            "Д35"
+          ]
+        },
+        "case_id": {
+          "description": "Идентификатор дела",
+          "type": "string"
+        },
+        "case_name": {
+          "description": "Наименование дела",
+          "type": "string"
+        }
+      },
+      "required": [
+        "case_type_id",
+        "case_id",
+        "case_name"
+      ],
+      "additionalProperties": false
+    },
+    "key_field_type": {
+      "properties": {
+        "key_field_id": {
+          "description": "Идентификатор ключевого поля. Таким же образом должно быть названо поле таблице сущностей, в которое сериализуется значение поля",
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "calculate": {
+          "description": "Порядок расчёта поля",
+          "type": "string"
+        },
+        "value": {
+          "description": "Значение поля",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "key_field_id",
+        "calculate",
+        "value"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

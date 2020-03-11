@@ -1,0 +1,92 @@
+@startuml
+'skinparam backgroundcolor transparent
+skinparam shadowing false
+skinparam componentStyle uml2
+skinparam dpi 300
+skinparam defaultFontName PT Sans
+
+skinparam defaultTextAlignment center
+
+skinparam activity  {
+	borderColor black
+  backgroundColor white
+	ArrowColor black
+}
+
+skinparam note {
+	borderColor black
+  backgroundColor #EEEEEE
+	ArrowColor black
+}
+skinparam activitydiamond {
+	borderColor black
+  backgroundColor white
+}
+
+start
+:Создать документ;
+if (Где создается \nдокумент?) then (Внутри \nАИС ГСН)
+	:Сформировать содержание
+	документа
+	в виде экранной формы,
+	в т.ч. на основе сведений
+	иных документов;
+	:Сгенерировать печатную форму
+	в формате pdf;
+	:При необходимости
+	доработать печатную форму
+	и повторно сгенерировать pdf;
+else (Во внешнем \nредакторе)
+	fork
+		:Заполнить требуемые
+		аналитические атрибуты
+		в виде экранной формы;
+	fork again
+		:**Документ подписывается в ЕОСДО**
+		....
+		Установить связь
+		с карточкой документа
+		в ЕОСДО
+		----
+		**Документ подписывается вне ЕОСДО**
+		....
+		Загрузить pdf-документ
+		(сканированный
+		или сгенерированный
+		во внешнем редакторе);
+	end fork
+endif
+if (Требуется подписать?) then (да)
+	if (Где подписывается документ?) then (Внутри \nАИС ГСН)
+		:Подписать документ
+		в заданном для него порядке;
+	else (Вне АИС ГСН)
+		:**Документ подписывается в ЕОСДО**
+		....
+		Получить сведения
+		о подписании
+		документа в ЕОСДО
+		----
+		**Документ подписывается вне ЕОСДО**
+		....
+		Установить отметку
+		о подписании документа;
+		note right
+			В этом случае
+			АИС ГСН хранит
+			не юридически
+			значимый
+			документ,
+			а справочные
+			сведения
+			о документе
+		end note
+	endif
+else (нет)
+endif
+
+stop
+
+
+
+@enduml

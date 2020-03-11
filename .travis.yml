@@ -1,0 +1,14 @@
+services: docker
+
+branches:
+  only:
+    - master
+
+jobs:
+  include:
+    - stage: Build and test
+      script: make build test
+      if: NOT type = push
+    - stage: Build, test and deploy
+      script: make build test deploy
+      if: (branch = master) AND (type = push)

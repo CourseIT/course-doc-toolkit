@@ -1,0 +1,2 @@
+#!/bin/sh
+java net.sf.saxon.Transform $1 $2 $3
