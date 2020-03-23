@@ -155,7 +155,8 @@ ADD /files/scripts/vjschema /usr/local/bin/wrappers/
 ADD /files/scripts/diff2pdf /usr/local/bin/wrappers/
 RUN chmod +x /usr/local/bin/wrappers/a2pdfs \
   && chmod +x /usr/local/bin/wrappers/vjschema \
-  && chmod +x /usr/local/bin/wrappers/diff2pdf
+  && chmod +x /usr/local/bin/wrappers/diff2pdf \
+  && chmod +x /usr/lib/node_modules/nunjucks-cli/main.js
 ENV PATH="$PATH:/usr/local/bin/wrappers/"
 
 WORKDIR /documents
