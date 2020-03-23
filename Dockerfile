@@ -147,6 +147,7 @@ RUN chmod +x /usr/local/bin/cpdf
 
 ADD /tests/resources/docbook /usr/local/bin/docbook
 ADD /tests/resources/docbook-xsl /usr/local/bin/docbook-xsl
+ADD /files/main.js /usr/lib/node_modules/nunjucks-cli
 
 # Command wrappers
 ADD /files/scripts/a2pdfs /usr/local/bin/wrappers/
