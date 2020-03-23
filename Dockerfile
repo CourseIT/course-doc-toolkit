@@ -129,7 +129,7 @@ RUN cd /usr/local \
 ENV PATH="$PATH:/usr/local/bin/asciidoctor-fopub/"
 
 # Installing ajv-cli, OpenAPI 3 Generator and hbs-cli
-RUN npm install -g --unsafe-perm=true --allow-root ajv-cli openapi3-generator hbs-cli
+RUN npm install -g --unsafe-perm=true --allow-root ajv-cli openapi3-generator hbs-cli nunjucks-cli
 
 # Installing tidy-html5
 RUN cd /usr/local \
@@ -161,4 +161,3 @@ WORKDIR /documents
 VOLUME /documents
 
 CMD ["/bin/bash"]
-
