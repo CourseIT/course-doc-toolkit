@@ -103,9 +103,42 @@ nunjucksEnv.addFilter('from_translit', function(a) {
     a = a.replace(/t/g   , 'т' );
     a = a.replace(/f/g   , 'ф' );
     a = a.replace(/x/g   , 'х' );
-    a = a.replace(/_/g   , '-' );
     return a;
 });
+
+
+//Фильтр конвертации формата даты: из ansi в german
+nunjucksEnv.addFilter('ansi_to_german', function (dataValue) {
+	if ((dataValue == null) || (dataValue == "")) {
+		return "—"
+	}
+	return dataValue.split("-")[2] + "." + dataValue.split("-")[1] + "." + dataValue.split("-")[0] + "г.";
+});
+
+
+//Фильтр для добавления zsp переносов в тексте
+nunjucksEnv.addFilter('make_underline_breakable', function(a) {
+    a = a.replace(/_/g   , '_{zsp}' );
+    return a;
+});
+
+
+
+//разница в сутках для функции date_diff
+const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+//Функция для определения разницы между двумя датами в днях 
+function date_diff(dataCurrent, dataPrevious) {
+	if ((dataCurrent == null) || (dataCurrent == "") || (dataPrevious == null) || (dataPrevious == "")) {
+		return "—"
+	}
+	return (Date.parse(dataCurrent, "YYYY-MM-DD") - Date.parse(dataPrevious, "YYYY-MM-DD")) / _MS_PER_DAY;
+}
+
+nunjucksEnv.addGlobal('date_diff', date_diff);
+
+
+
 
 const render = (/** @type {string[]} */ files) => {
 	for (const file of files) {
