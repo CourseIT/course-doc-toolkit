@@ -67,9 +67,6 @@ const nunjucksOptions = argv.options
 const nunjucksEnv = nunjucks.configure(inputDir, nunjucksOptions)
 
 nunjucksEnv.addFilter('from_translit', function(a) {
-    a = a.replace(/target_transition/g , 'целевой-переход-состояния' );
-    a = a.replace(/display_name/g , 'отображаемое-имя' );
-    a = a.replace(/state/g , 'статус' );
     a = a.replace(/shh/g , 'щ' );
     a = a.replace(/yo/g  , 'ё' );
     a = a.replace(/zh/g  , 'ж' );
