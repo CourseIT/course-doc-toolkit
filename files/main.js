@@ -187,3 +187,25 @@ if (argv.watch) {
 		else render([file])
 	})
 }
+
+//Функция для разбора table в text-area
+function split_tab(value) {
+  let table = {
+    'row': []
+    }
+  let rows = value.split('\n').map(row => row.trim());
+    rows.forEach(row_csv => {
+      let row = {
+        col: []
+      };
+      let cols = row_csv.split('\t');
+      cols.forEach(col_csv => {
+        row['col'].push(col_csv)
+      });
+    
+      table['row'].push(row)
+    });
+  return table;
+}
+
+nunjucksEnv.addGlobal('split_tab', split_tab);
