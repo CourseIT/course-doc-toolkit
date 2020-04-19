@@ -10,7 +10,7 @@ ARG asciidoctor_mathematical_version=0.3.1
 ARG asciidoctor_revealjs_version=3.1.0
 ARG kramdown_asciidoc_version=1.0.1
 
-# PlantUML version
+# PlantUML version 
 ARG plantuml_version=1.2019.13
 
 # Saxon version
