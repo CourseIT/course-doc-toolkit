@@ -7,7 +7,6 @@ const chokidar = require('chokidar')
 const glob = require('glob')
 const mkdirp = require('mkdirp')
 const chalk = require('chalk').default
-const md = require('markdown-it')();
 
 const { argv } = require('yargs')
 	.usage('Usage: nunjucks <file|glob> [context] [options]')
@@ -66,10 +65,6 @@ const nunjucksOptions = argv.options
 	: { trimBlocks: true, lstripBlocks: true, noCache: true }
 
 const nunjucksEnv = nunjucks.configure(inputDir, nunjucksOptions)
-
-nunjucksEnv.addFilter('md', function(a) {
-  return md.render(a);
-});
 
 nunjucksEnv.addFilter('md2asciidoc', function(a) {
   a = a.replace(/\&nbsp\;/g, '\xA0' );
