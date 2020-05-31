@@ -41,6 +41,7 @@ RUN apk update && apk add --no-cache \
 	git \
 	graphviz \
 	inotify-tools \
+  jq \
 	make \
 	nano \
 	openjdk11 \
