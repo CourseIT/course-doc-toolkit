@@ -67,7 +67,7 @@ const nunjucksOptions = argv.options
 const nunjucksEnv = nunjucks.configure(inputDir, nunjucksOptions)
 
 nunjucksEnv.addFilter('md2asciidoc', function(a) {
-  a = a.replace(/C\+\+/g, '{cpp}' );  
+  a = a.replace(/C\+\+/g, '{cpp}' );
   a = a.replace(/\&nbsp\;/g, '\xA0' );
   a = a.replace(/\&amp\;/g, '&' );
   a = a.replace(/\&gt\;/g, '>' );
