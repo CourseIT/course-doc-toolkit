@@ -84,6 +84,22 @@ nunjucksEnv.addFilter('md2asciidoc', function(a) {
   return a;
 });
 
+nunjucksEnv.addFilter('ansiToGerman', function(dateValue) {
+      if ((dateValue == null) || (dateValue === "")) {
+                return "—"
+            }
+      let day = dateValue.split("-")[2];
+      if (! day) {
+              return "—"
+            }
+      if (day.includes('T') && day.includes('Z')) {
+                day = day.slice(0, 2);
+            }
+      let month = dateValue.split("-")[1];
+      let year = dateValue.split("-")[0];
+      return day + "." + month + "." + year 
+});
+
 nunjucksEnv.addFilter('from_translit', function(a) {
     a = a.replace(/target_transition/g , 'целевой-переход-состояния' );
     a = a.replace(/display_name/g , 'отображаемое-имя' );
