@@ -7,6 +7,7 @@ const chokidar = require('chokidar')
 const glob = require('glob')
 const mkdirp = require('mkdirp')
 const chalk = require('chalk').default
+const md = require('markdown-it')();
 
 const { argv } = require('yargs')
 	.usage('Usage: nunjucks <file|glob> [context] [options]')
@@ -66,7 +67,32 @@ const nunjucksOptions = argv.options
 
 const nunjucksEnv = nunjucks.configure(inputDir, nunjucksOptions)
 
+nunjucksEnv.addFilter('md', function(a) {
+  return md.render(a);
+});
+
+nunjucksEnv.addFilter('md2asciidoc', function(a) {
+  a = a.replace(/\&nbsp\;/g, '\xA0' );
+  a = a.replace(/\&amp\;/g, '&' );
+  a = a.replace(/\&gt\;/g, '>' );
+  a = a.replace(/\&lt\;/g, '<' );
+  a = a.replace(/[ ]+[\n]/g, '\n' );
+  a = a.replace(/<a[ ]*[^\n]*href="([^\n]*)"[^\n]*target[^\n]*>([^\n]*)<\/a>/g, 'link:\$1[\$2]' );
+  a = a.replace(/([^\n^>])[\n]([^\n^>])/g, '\$1tyutyutyu\$2' );
+  a = a.replace(/^[>][\ ]*([a-zA-Zа-яА-Я0-9\ё\_\:\xA0\ \(\)\*\.\'\`\$\&\%\#\@\[\]\{\}\|\;\-\+\—\–\,\«\»\?\/\\\!]*)/gm, '\n====\n\$1\n====\n' );
+  a = a.replace(/([*][^*]+)tyutyutyu([^*]+[*])/gm, '\$1*tyutyutyu*\$2' );
+  a = a.replace(/tyutyutyu/g, '\n\n' );
+  a = a.replace(/====[\n]*====/g, '' );
+//  a = a.replace(/(\n[^>][^\n]*)\n>/g, '\1\n====\n' );
+
+//  a = a.replace(/^[>]/gm, 'TIP: ' );
+  return a;
+});
+
 nunjucksEnv.addFilter('from_translit', function(a) {
+    a = a.replace(/target_transition/g , 'целевой-переход-состояния' );
+    a = a.replace(/display_name/g , 'отображаемое-имя' );
+    a = a.replace(/state/g , 'статус' );
     a = a.replace(/shh/g , 'щ' );
     a = a.replace(/yo/g  , 'ё' );
     a = a.replace(/zh/g  , 'ж' );
@@ -100,42 +126,9 @@ nunjucksEnv.addFilter('from_translit', function(a) {
     a = a.replace(/t/g   , 'т' );
     a = a.replace(/f/g   , 'ф' );
     a = a.replace(/x/g   , 'х' );
+    a = a.replace(/_/g   , '-' );
     return a;
 });
-
-
-//Фильтр конвертации формата даты: из ansi в german
-nunjucksEnv.addFilter('ansi_to_german', function (dataValue) {
-	if ((dataValue == null) || (dataValue == "")) {
-		return "—"
-	}
-	return dataValue.split("-")[2] + "." + dataValue.split("-")[1] + "." + dataValue.split("-")[0] + "г.";
-});
-
-
-//Фильтр для добавления zsp переносов в тексте
-nunjucksEnv.addFilter('make_underline_breakable', function(a) {
-    a = a.replace(/_/g   , '_{zsp}' );
-    return a;
-});
-
-
-
-//разница в сутках для функции date_diff
-const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-
-//Функция для определения разницы между двумя датами в днях 
-function date_diff(dataCurrent, dataPrevious) {
-	if ((dataCurrent == null) || (dataCurrent == "") || (dataPrevious == null) || (dataPrevious == "")) {
-		return "—"
-	}
-	return (Date.parse(dataCurrent, "YYYY-MM-DD") - Date.parse(dataPrevious, "YYYY-MM-DD")) / _MS_PER_DAY;
-}
-
-nunjucksEnv.addGlobal('date_diff', date_diff);
-
-
-
 
 const render = (/** @type {string[]} */ files) => {
 	for (const file of files) {
@@ -187,25 +180,3 @@ if (argv.watch) {
 		else render([file])
 	})
 }
-
-//Функция для разбора table в text-area
-function split_tab(value) {
-  let table = {
-    'row': []
-    }
-  let rows = value.split('\n').map(row => row.trim());
-    rows.forEach(row_csv => {
-      let row = {
-        col: []
-      };
-      let cols = row_csv.split('\t');
-      cols.forEach(col_csv => {
-        row['col'].push(col_csv)
-      });
-    
-      table['row'].push(row)
-    });
-  return table;
-}
-
-nunjucksEnv.addGlobal('split_tab', split_tab);
