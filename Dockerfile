@@ -90,12 +90,15 @@ RUN apk add --no-cache --virtual .pythonmakedepends \
 	build-base \
 	python3-dev \
 	py3-pip \
+	postgresql-dev \
+	gcc \ 
+	musl-dev \
   && pip3 install --no-cache-dir \
 	actdiag \
 	'blockdiag[pdf]' \
 	nwdiag \
 	seqdiag \
-	psycopg2-binary \
+	psycopg2 \
   && apk del -r --no-cache .pythonmakedepends
 
 # Installing csvkit, imagemagick, pdf-diff, nodejs, yamllint and npm
