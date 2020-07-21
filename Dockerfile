@@ -95,7 +95,7 @@ RUN apk add --no-cache --virtual .pythonmakedepends \
 	'blockdiag[pdf]' \
 	nwdiag \
 	seqdiag \
-	psycopg-binary \
+	psycopg2-binary \
   && apk del -r --no-cache .pythonmakedepends
 
 # Installing csvkit, imagemagick, pdf-diff, nodejs, yamllint and npm
