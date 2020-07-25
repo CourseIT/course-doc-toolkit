@@ -90,20 +90,18 @@ RUN apk add --no-cache --virtual .pythonmakedepends \
 	build-base \
 	python3-dev \
 	py3-pip \
-	postgresql-dev \
-	gcc \ 
-	musl-dev \
   && pip3 install --no-cache-dir \
 	actdiag \
 	'blockdiag[pdf]' \
 	nwdiag \
 	seqdiag \
-	psycopg2 \
   && apk del -r --no-cache .pythonmakedepends
 
 # Installing csvkit, imagemagick, pdf-diff, nodejs, yamllint and npm
 RUN pip3 install --upgrade pip setuptools csvkit pdf-diff yamllint \
   && apk add --update --no-cache imagemagick nodejs nodejs-npm
+
+RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/edge/main --no-cache py3-psycopg2
 
 # Installing PlantUML
 RUN mkdir /usr/local/bin/plantuml/ \
