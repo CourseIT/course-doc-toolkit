@@ -147,12 +147,13 @@
 	<!-- normal.para.spacing is the only attribute set applied to all paragraphs -->
 	<xsl:attribute-set name="normal.para.spacing">
 		<xsl:attribute name="text-indent">0</xsl:attribute>
-		<xsl:attribute name="space-before.optimum">0</xsl:attribute>
-		<xsl:attribute name="space-before.minimum">0</xsl:attribute>
-		<xsl:attribute name="space-before.maximum">0</xsl:attribute>
-		<xsl:attribute name="space-after.optimum">0em</xsl:attribute>
-		<xsl:attribute name="space-after.minimum">0.8em</xsl:attribute>
-		<xsl:attribute name="space-after.maximum">1.2em</xsl:attribute>
+		<xsl:attribute name="space-before.optimum">0.8</xsl:attribute>
+		<xsl:attribute name="space-before.minimum">0.6</xsl:attribute>
+		<xsl:attribute name="space-before.maximum">1</xsl:attribute>
+		<xsl:attribute name="space-after.optimum">0.8em</xsl:attribute>
+		<xsl:attribute name="space-after.minimum">0.6em</xsl:attribute>
+		<xsl:attribute name="space-after.maximum">1em</xsl:attribute>
+                <xsl:attribute name="line-stacking-strategy">font-height</xsl:attribute>
 		<!--
         <xsl:attribute name="color"><xsl:value-of select="$text.color"/></xsl:attribute>
         -->
@@ -472,15 +473,24 @@
      -->
 
 	<xsl:attribute-set name="formal.object.properties">
-		<xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
-		<xsl:attribute name="space-before.optimum">1em</xsl:attribute>
-		<xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
-		<xsl:attribute name="space-after.minimum">0.8em</xsl:attribute>
-		<xsl:attribute name="space-after.optimum">1em</xsl:attribute>
-		<xsl:attribute name="space-after.maximum">1.2em</xsl:attribute>
+		<xsl:attribute name="space-before.minimum">0.6em</xsl:attribute>
+		<xsl:attribute name="space-before.optimum">0.8em</xsl:attribute>
+		<xsl:attribute name="space-before.maximum">1em</xsl:attribute>
+		<xsl:attribute name="space-after.minimum">0.6em</xsl:attribute>
+		<xsl:attribute name="space-after.optimum">0.8em</xsl:attribute>
+		<xsl:attribute name="space-after.maximum">1em</xsl:attribute>
 		<!-- Make examples, tables etc. break across pages -->
 		<!--<xsl:attribute name="keep-together.within-column">always</xsl:attribute>-->
 	</xsl:attribute-set>
+
+        <xsl:attribute-set name="informal.object.properties">
+          <xsl:attribute name="space-before.minimum">0.6em</xsl:attribute>
+          <xsl:attribute name="space-before.optimum">0.8em</xsl:attribute>
+          <xsl:attribute name="space-before.maximum">1em</xsl:attribute>
+          <xsl:attribute name="space-after.minimum">0.6em</xsl:attribute>
+          <xsl:attribute name="space-after.optimum">0.8em</xsl:attribute>
+          <xsl:attribute name="space-after.maximum">1em</xsl:attribute>
+        </xsl:attribute-set>
 	<!--
         <xsl:param name="formal.title.placement">
             figure after
@@ -575,7 +585,7 @@
 	<!--
       Tables
     -->
-
+  
 	<xsl:template name="define.cell.padding">
 		<xsl:choose>
 			<xsl:when test="(ancestor::table[contains(concat(' ', @role , ' '), ' container ')] and descendant::informaltable) or (ancestor::db:table[contains(concat(' ', @role , ' '), ' container ')] and descendant::db:informaltable)">
@@ -1140,18 +1150,18 @@
 
 
 	<xsl:attribute-set name="list.block.spacing">
-		<xsl:attribute name="space-before.optimum">1em</xsl:attribute>
-		<xsl:attribute name="space-before.minimum">0.8em</xsl:attribute>
-		<xsl:attribute name="space-before.maximum">1.2em</xsl:attribute>
-		<xsl:attribute name="space-after.optimum">1em</xsl:attribute>
-		<xsl:attribute name="space-after.minimum">0.8em</xsl:attribute>
-		<xsl:attribute name="space-after.maximum">1.2em</xsl:attribute>
+		<xsl:attribute name="space-before.optimum">0.8em</xsl:attribute>
+		<xsl:attribute name="space-before.minimum">0.6em</xsl:attribute>
+		<xsl:attribute name="space-before.maximum">1em</xsl:attribute>
+		<xsl:attribute name="space-after.optimum">0.8em</xsl:attribute>
+		<xsl:attribute name="space-after.minimum">0.6em</xsl:attribute>
+		<xsl:attribute name="space-after.maximum">1em</xsl:attribute>
 	</xsl:attribute-set>
 
 	<xsl:attribute-set name="list.item.spacing">
-		<xsl:attribute name="space-before.optimum">0.4em</xsl:attribute>
-		<xsl:attribute name="space-before.minimum">0.4em</xsl:attribute>
-		<xsl:attribute name="space-before.maximum">0.4em</xsl:attribute>
+		<xsl:attribute name="space-before.optimum">0.8em</xsl:attribute>
+		<xsl:attribute name="space-before.minimum">0.6em</xsl:attribute>
+		<xsl:attribute name="space-before.maximum">1em</xsl:attribute>
 	</xsl:attribute-set>
 
 	<xsl:attribute-set name="variablelist.term.properties">
@@ -1429,27 +1439,40 @@
 	<!--
       Footnotes
     -->
-
+table.footnote.number.format
+  <xsl:param name="table.footnote.number.format">1</xsl:param>
 	<xsl:param name="footnote.number.format">1</xsl:param>
 	<xsl:param name="footnote.number.symbols"/>
 
 	<xsl:param name="footnote.font.size">
-		<xsl:value-of select="$body.font.master * 0.8"/>
+		<xsl:value-of select="$body.font.master * 0.7"/>
 		<xsl:text>pt</xsl:text>
 	</xsl:param>
 
+  	<xsl:attribute-set name="table.footnote.mark.properties">
+		<!-- override font-family for mark since we don't need full font set -->
+		<xsl:attribute name="font-family">
+			<xsl:value-of select="$body.font.family"/>
+		</xsl:attribute>
+		<xsl:attribute name="font-size">
+			<xsl:value-of select="$body.font.master * 0.5"/>
+			<xsl:text>pt</xsl:text>
+		</xsl:attribute>
+		<xsl:attribute name="color">black</xsl:attribute>
+		<xsl:attribute name="font-weight">bold</xsl:attribute>
+		<xsl:attribute name="padding">0 1pt</xsl:attribute>
+	</xsl:attribute-set>
+  
 	<xsl:attribute-set name="footnote.mark.properties">
 		<!-- override font-family for mark since we don't need full font set -->
 		<xsl:attribute name="font-family">
 			<xsl:value-of select="$body.font.family"/>
 		</xsl:attribute>
 		<xsl:attribute name="font-size">
-			<xsl:value-of select="$body.font.master * 0.8"/>
+			<xsl:value-of select="$body.font.master * 0.7"/>
 			<xsl:text>pt</xsl:text>
 		</xsl:attribute>
-		<xsl:attribute name="color">
-			<xsl:value-of select="$link.color"/>
-		</xsl:attribute>
+		<xsl:attribute name="color">black</xsl:attribute>
 		<xsl:attribute name="font-weight">bold</xsl:attribute>
 		<xsl:attribute name="padding">0 1pt</xsl:attribute>
 	</xsl:attribute-set>
